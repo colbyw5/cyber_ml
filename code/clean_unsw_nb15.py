@@ -26,6 +26,7 @@ file_names = [base_url + str(x) + '.csv' for x in range(1, 6)]
 
 def process_pcap(url):
     
+    '''function description'''
     pcap_data = pd.read_csv(url,  # read data file from source
                        names = feature_desc['Name']) 
     
@@ -34,7 +35,7 @@ def process_pcap(url):
     pcap_data[categorical_features] = \
         pcap_data[categorical_features].astype('category') 
         
-    pcap_data['dsport'] = pd.to_numeric(pcap_data['dsport'])
+    pcap_data['dsport'] = pd.to_numeric(pcap_data['dsport'], errors='drop')
     
     pcap_data.dropna(inplace = True)
     
